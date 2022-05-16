@@ -20,4 +20,8 @@ class ShippingCompaniesController < ApplicationController
     end
   end
 
+  def show
+    @shipping_company = ShippingCompany.find(params[:id])
+  end
+
 end
