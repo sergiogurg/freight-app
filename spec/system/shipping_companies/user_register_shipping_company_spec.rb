@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 describe 'Usuário cadastra transportadora' do
+
+  it 'e volta para a lista de transportadoras' do
+    # Arrange
+
+    # Act
+    visit root_path
+    within('nav') do
+      click_on 'Transportadoras'
+    end
+    click_on 'Cadastrar Nova Transportadora'
+    click_on 'Voltar'
+
+    # Assert
+    expect(current_path).to eq(shipping_companies_path)
+  end
+
   it 'a partir do menu inicial' do
     # Arrange
 
