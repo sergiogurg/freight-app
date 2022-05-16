@@ -24,4 +24,8 @@ class ShippingCompaniesController < ApplicationController
     @shipping_company = ShippingCompany.find(params[:id])
   end
 
+  def edit
+    @shipping_company = ShippingCompany.find(params[:id])
+  end
+
 end
