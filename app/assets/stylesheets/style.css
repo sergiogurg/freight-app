@@ -1,0 +1,7 @@
+div.field_with_errors input {
+    border-color: red;
+}
+
+div.field_with_errors label {
+    color: red;
+}

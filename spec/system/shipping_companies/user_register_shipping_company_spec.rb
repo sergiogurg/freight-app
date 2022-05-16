@@ -42,6 +42,31 @@ describe 'Usuário cadastra transportadora' do
     expect(page).to have_content('10970887000285')
   end
 
-  # it 'com dados incompletos' do
-  # end
+  it 'sem preencher os campos de dados' do
+    # Arrange
+
+    # Act
+    visit root_path
+    within('nav') do
+      click_on 'Transportadoras'
+    end
+    click_on 'Cadastrar Nova Transportadora'
+    fill_in 'Razão Social', with: ''
+    fill_in 'Nome Fantasia', with: ''
+    fill_in 'CNPJ', with: ''
+    fill_in 'Domínio de Email', with: ''
+    fill_in 'Endereço', with: ''
+    click_on 'Enviar'
+
+    # Assert
+    expect(page).to have_content('Não foi possível cadastrar a transportadora')
+    expect(page).to have_content('Nome Fantasia não pode ficar em branco')
+    expect(page).to have_content('CNPJ não pode ficar em branco')
+    expect(page).to have_content('Domínio de Email não pode ficar em branco')
+    expect(page).to have_content('Endereço não pode ficar em branco')
+
+  end
+
+
+
 end
