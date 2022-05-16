@@ -57,7 +57,33 @@ describe 'Usuário edita uma transportadora' do
     
   end
 
-  # it 'e mantém os campos obrigatórios' do
+  it 'e não salva campos em branco' do
+    # Arrange
+    ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
+
+    # Act
+    visit root_path
+    within('nav') do
+      click_on 'Transportadoras'
+    end
+    click_on 'FedEx'
+    click_on 'Editar'
+    fill_in 'Razão Social', with: ''
+    fill_in 'Nome Fantasia', with: ''
+    fill_in 'CNPJ', with: ''
+    fill_in 'Domínio de Email', with: ''
+    fill_in 'Endereço', with: ''
+    click_on 'Enviar'
+
+    # Assert
+    expect(page).to have_content('Não foi possível atualizar a transportadora')
+    expect(page).to have_content('Nome Fantasia não pode ficar em branco')
+    expect(page).to have_content('CNPJ não pode ficar em branco')
+    expect(page).to have_content('Domínio de Email não pode ficar em branco')
+    expect(page).to have_content('Endereço não pode ficar em branco')
+  end
+
+  # it 'e e não salva campos já em uso por outra transportadora' do
   #   # Arrange
 
   #   # Act
