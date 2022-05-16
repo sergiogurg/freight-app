@@ -28,4 +28,16 @@ class ShippingCompaniesController < ApplicationController
     @shipping_company = ShippingCompany.find(params[:id])
   end
 
+  def update
+    @shipping_company = ShippingCompany.find(params[:id])
+    shipping_company_params = params.require(:shipping_company).permit(:corporate_name, :brand_name, :registration_number, :email_domain, :address)
+    if @shipping_company.update(shipping_company_params)
+      flash[:notice] = 'Transportadora atualizada com sucesso'
+      redirect_to shipping_company_path
+    else
+      flash.now[:notice] = 'Não foi possível atualizar a transportadora'
+      render :edit
+    end
+  end
+
 end
