@@ -67,6 +67,4 @@ describe 'Usuário cadastra transportadora' do
 
   end
 
-
-
 end

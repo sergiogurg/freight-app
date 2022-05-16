@@ -6,7 +6,7 @@
   <% @shipping_companies.each do |sc| %>
     <h2><%= sc.brand_name %></h2>
     <p><%= sc.corporate_name %></p>
-    <p><%= sc.registration_number %></p>
+    <p>CNPJ: <%= sc.registration_number %></p>
   <% end %>
 <% else %>
   <h2>Nenhuma transportadora cadastrada</h2>
