@@ -6,7 +6,9 @@ describe 'Usuário cadastra transportadora' do
 
     # Act
     visit root_path
-    click_on 'Transportadoras'
+    within('nav') do
+      click_on 'Transportadoras'
+    end
     click_on 'Cadastrar Nova Transportadora'
 
     # Assert 
