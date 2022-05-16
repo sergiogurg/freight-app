@@ -1,0 +1,14 @@
+<div>
+  <%= link_to 'Cadastrar Nova Transportadora', new_shipping_company_path %>
+</div>
+
+<% if @shipping_companies.any? %>
+  <% @shipping_companies.each do |sc| %>
+    <h2><%= sc.brand_name %></h2>
+    <p><%= sc.corporate_name %></p>
+    <p><%= sc.registration_number %></p>
+  <% end %>
+<% else %>
+  <h2>Nenhuma transportadora cadastrada</h2>
+<% end %>
+

@@ -13,12 +13,13 @@
     <header>
       <h1>Sistema de Fretes</h1>
       <nav>
-        Transportadoras |
+        <%= link_to 'Transportadoras', shipping_companies_path %>  |
         Ordens de Serviço |
         Rastreamento de Entrega
       </nav>
     </header>
     <main>
+      <%= flash[:notice] %>
       <%= yield %>
     </main>
     <footer>
