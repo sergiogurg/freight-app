@@ -83,12 +83,27 @@ describe 'Usuário edita uma transportadora' do
     expect(page).to have_content('Endereço não pode ficar em branco')
   end
 
-  # it 'e e não salva campos já em uso por outra transportadora' do
-  #   # Arrange
+  it 'e não salva campos já em uso por outra' do
+    # Arrange
+    ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
+    ShippingCompany.create!(corporate_name: 'Embraen Empresa Brasileira de Transportes Eireli', brand_name: 'Embraen', registration_number: '04512172000103', email_domain: '@embraen.com.br', address: 'Rua Doutor João Marques Mauricio, 278, Embu das Artes - SP')
 
-  #   # Act
+    # Act
+    visit root_path
+    within('nav') do
+      click_on 'Transportadoras'
+    end
+    click_on 'Embraen'
+    click_on 'Editar'
+    fill_in 'Razão Social', with: 'Fedex Brasil Logistica e Transporte LTDA'
+    fill_in 'CNPJ', with: '10970887000285'
+    fill_in 'Domínio de Email', with: '@fedex.com.br'
+    click_on 'Enviar'
 
-  #   # Assert
-
-  # end
+    # Assert
+    expect(page).to have_content('Não foi possível atualizar a transportadora')
+    expect(page).to have_content('Razão Social já está em uso')
+    expect(page).to have_content('CNPJ já está em uso')
+    expect(page).to have_content('Domínio de Email já está em uso')
+  end
 end
