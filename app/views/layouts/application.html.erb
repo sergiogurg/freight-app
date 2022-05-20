@@ -21,8 +21,12 @@
         <% if admin_signed_in? %>
           <%= current_admin.email %>
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
+        <% elsif user_signed_in? %>
+          <%= current_user.email %>
+          <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
         <% else %>
-          <%= link_to 'Fazer Login como Admin', new_admin_session_path %>
+          <%= link_to 'Fazer Login como Admin', new_admin_session_path %> |
+          <%= link_to 'Fazer Login como Usuário', new_user_session_path %>
         <% end %>
       </nav>
     </header>
