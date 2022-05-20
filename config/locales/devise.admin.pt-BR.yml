@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     attributes:
-      user:
+      admin:
         confirmation_sent_at: Confirmação enviada em
         confirmation_token: Token de confirmação
         confirmed_at: Confirmado em
@@ -26,7 +26,7 @@ pt-BR:
         unlock_token: Token de desbloqueio
         updated_at: Atualizado em
     models:
-      user:
+      admin:
         one: Usuário
         other: Usuários
   devise:
@@ -112,11 +112,12 @@ pt-BR:
       updated: A sua conta foi atualizada com sucesso.
       updated_but_not_signed_in: Sua conta foi atualizada com sucesso, uma vez que sua senha foi alterada será necessário realizar o login novamente.
     sessions:
-      already_signed_out: Logout efetuado com sucesso.
-      new:
-        sign_in: Login
-      signed_in: Login efetuado com sucesso.
-      signed_out: Logout efetuado com sucesso.
+      admin:
+        already_signed_out: Logout efetuado com sucesso.
+        new:
+          sign_in: Login
+        signed_in: Login de Admin efetuado com sucesso.
+        signed_out: Logout de Admin efetuado com sucesso.
     shared:
       links:
         back: Voltar

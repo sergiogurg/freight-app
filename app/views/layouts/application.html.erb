@@ -17,11 +17,20 @@
         <%= link_to 'Home', root_path %>  |
         <%= link_to 'Transportadoras', shipping_companies_path %>  |
         Ordens de Serviço  |
-        Rastreamento de Entrega
+        Rastreamento de Entrega |
+        <% if admin_signed_in? %>
+          <%= current_admin.email %>
+          <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
+        <% else %>
+          <%= link_to 'Fazer Login como Admin', new_admin_session_path %>
+        <% end %>
       </nav>
     </header>
     <main>
-      <%= flash[:notice] %>
+      <div>
+        <%= flash[:alert] %>
+        <%= flash[:notice] %>
+      </div>
       <%= yield %>
     </main>
     <footer>
