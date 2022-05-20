@@ -4,9 +4,16 @@ describe 'Usuário cadastra transportadora' do
 
   it 'e volta para a lista de transportadoras' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
@@ -19,9 +26,16 @@ describe 'Usuário cadastra transportadora' do
 
   it 'a partir do menu inicial' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
@@ -39,9 +53,16 @@ describe 'Usuário cadastra transportadora' do
   
   it 'com sucesso' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
@@ -62,9 +83,16 @@ describe 'Usuário cadastra transportadora' do
 
   it 'sem preencher os campos de dados' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
@@ -82,7 +110,6 @@ describe 'Usuário cadastra transportadora' do
     expect(page).to have_content('CNPJ não pode ficar em branco')
     expect(page).to have_content('Domínio de Email não pode ficar em branco')
     expect(page).to have_content('Endereço não pode ficar em branco')
-
   end
 
 end

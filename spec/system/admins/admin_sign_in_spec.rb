@@ -29,9 +29,9 @@ describe 'Usuário de Administrador se autentica (faz login)' do
     click_on 'Entrar'
 
     # Assert
-    expect(page).to have_content('Login Admin efetuado com sucesso.')
+    expect(page).to have_content('Login de Admin efetuado com sucesso.')
     expect(page).not_to have_link('Fazer Login como Admin')
-    expect(page).to have_link('Sair')
+    expect(page).to have_button('Sair')
     expect(page).to have_content('teste@sistemadefrete.com.br')
   end
 
@@ -50,10 +50,10 @@ describe 'Usuário de Administrador se autentica (faz login)' do
     click_on 'Sair'
 
     # Assert
-    expect(page).to have_content('Admin Saiu')
-    expect(page).to have_link('Entrar')
-    expect(page).not_to have_link('Sair')
-    expext(page).not_to have_content('teste@sistemadefrete.com.br')
+    expect(page).to have_content('Logout de Admin efetuado com sucesso.')
+    expect(page).to have_link('Fazer Login como Admin')
+    expect(page).not_to have_button('Sair')
+    expect(page).not_to have_content('teste@sistemadefrete.com.br')
   end
   
 end

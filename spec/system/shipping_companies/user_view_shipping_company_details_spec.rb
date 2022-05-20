@@ -3,10 +3,17 @@ require 'rails_helper'
 describe 'Usuário vê detalhes de uma transportadora' do
   it 'e vê informações adicionais' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
     ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
@@ -26,10 +33,17 @@ describe 'Usuário vê detalhes de uma transportadora' do
 
   it 'e volta para a lista de transportadoras' do
     # Arrange
+    Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
     ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
 
     # Act
     visit root_path
+    within('nav') do
+      click_on 'Fazer Login como Admin'
+    end
+    fill_in 'E-mail', with: 'teste@sistemadefrete.com.br'
+    fill_in 'Senha', with: 'admin123'
+    click_on 'Entrar'
     within('nav') do
       click_on 'Transportadoras'
     end
