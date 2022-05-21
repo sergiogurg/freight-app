@@ -1,5 +1,5 @@
 class ShippingCompaniesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, except: [:show]
   before_action :set_shipping_company, only: [:show, :edit, :update]
 
   def index
@@ -21,7 +21,12 @@ class ShippingCompaniesController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    if user_signed_in? && current_user.shipping_company != @shipping_company
+      flash[:notice] = 'Usuário, você foi redirecionado por tentar visualizar outra Transportadora.'
+      redirect_to root_path
+    end
+  end
 
   def edit; end
 

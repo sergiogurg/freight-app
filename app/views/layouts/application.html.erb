@@ -16,6 +16,9 @@
       <nav>
         <%= link_to 'Home', root_path %>  |
         <%= link_to 'Transportadoras', shipping_companies_path %>  |
+        <% if user_signed_in? && current_user.shipping_company != nil %>
+          <%= link_to 'Minha Transportadora', shipping_company_path(current_user.shipping_company_id) %> |
+        <% end %>
         Ordens de Serviço  |
         Rastreamento de Entrega |
         <% if admin_signed_in? %>
