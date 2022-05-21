@@ -12,9 +12,26 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    user_password = params[:user][:password]
+    user_email = params[:user][:email]
+    user_email_domain = '@' + user_email.split('@').last
+    ShippingCompany.all.each do |sc|
+      if user_email_domain == sc.email_domain
+        @user = User.new(email: user_email, password: user_password, shipping_company: sc)
+      end
+    end
+    if @user == nil
+      flash[:notice] = 'O domínio de email não pertence a nenhuma Transportadora.'
+      redirect_to new_user_registration_path
+    elsif @user.save()
+      flash[:notice] = 'Bem vindo! Conta de Transportadora criada com sucesso.'
+      redirect_to new_user_session_path
+    else
+      flash[:notice] = 'Erro ao criar conta de Transportadora.'
+      redirect_to new_user_registration_path
+    end
+  end
 
   # GET /resource/edit
   # def edit
