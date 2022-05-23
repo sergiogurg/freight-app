@@ -1,0 +1,30 @@
+<%= form_with(model: [@shipping_company, @vehicle]) do |f| %>
+  <div>
+    <%= f.label :id_plate %>
+    <%= f.text_field :id_plate %>
+    <%= @vehicle.errors.full_messages_for(:id_plate)[0] if @vehicle.errors.full_messages_for(:id_plate).any? %>
+  </div>
+  <div>
+    <%= f.label :make %>
+    <%= f.text_field :make %>
+    <%= @vehicle.errors.full_messages_for(:make)[0] if @vehicle.errors.full_messages_for(:make).any? %>
+  </div>
+  <div>
+    <%= f.label :model %>
+    <%= f.text_field :model %>
+    <%= @vehicle.errors.full_messages_for(:model)[0] if @vehicle.errors.full_messages_for(:model).any? %>
+  </div>
+  <div>
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+    <%= @vehicle.errors.full_messages_for(:year)[0] if @vehicle.errors.full_messages_for(:year).any? %>
+  </div>
+  <div>
+    <%= f.label :load_capacity %>
+    <%= f.text_field :load_capacity %>
+    <%= @vehicle.errors.full_messages_for(:load_capacity)[0] if @vehicle.errors.full_messages_for(:load_capacity).any? %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

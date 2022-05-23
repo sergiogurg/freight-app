@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       shipping_company: 'Transportadora'
+      vehicle: 'Veículo'
     attributes:
       shipping_company:
         corporate_name: "Razão Social"
@@ -9,3 +10,9 @@ pt-BR:
         registration_number: "CNPJ"
         email_domain: "Domínio de Email"
         address: "Endereço"
+      vehicle:
+        id_plate: "Placa"
+        make: "Marca"
+        model: "Modelo"
+        year: "Ano"
+        load_capacity: "Capacidade de carga"
