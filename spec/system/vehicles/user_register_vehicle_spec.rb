@@ -4,16 +4,11 @@ describe 'Usuário de Transportadora cadastra veículo' do
   it 'a partir da tela inicial' do
     # Arrange
     sc = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
-    User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
+    user = User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
 
     # Act
+    login_as(user, :scope => :user)
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login como Usuário'
-    end
-    fill_in 'E-mail', with: 'teste@fedex.com.br'
-    fill_in 'Senha', with: 'fedex123'
-    click_on 'Entrar'
     within('nav') do
       click_on 'Minha Transportadora'
     end
@@ -31,16 +26,11 @@ describe 'Usuário de Transportadora cadastra veículo' do
   it 'com sucesso' do
     # Arrange
     sc = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
-    User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
+    user = User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
 
     # Act
+    login_as(user, :scope => :user)
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login como Usuário'
-    end
-    fill_in 'E-mail', with: 'teste@fedex.com.br'
-    fill_in 'Senha', with: 'fedex123'
-    click_on 'Entrar'
     within('nav') do
       click_on 'Minha Transportadora'
     end
@@ -60,16 +50,11 @@ describe 'Usuário de Transportadora cadastra veículo' do
   it 'com dados incompletos e falha' do
     # Arrange
     sc = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
-    User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
+    user = User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: sc)
 
     # Act
+    login_as(user, :scope => :user)
     visit root_path
-    within('nav') do
-      click_on 'Fazer Login como Usuário'
-    end
-    fill_in 'E-mail', with: 'teste@fedex.com.br'
-    fill_in 'Senha', with: 'fedex123'
-    click_on 'Entrar'
     within('nav') do
       click_on 'Minha Transportadora'
     end

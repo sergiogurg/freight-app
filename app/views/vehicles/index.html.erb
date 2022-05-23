@@ -9,7 +9,11 @@
     </tr>
     <% @vehicles.each do |v| %>
       <tr style="text-align: center;">
-        <td><%= v.make %> <%= v.model %> <%= v.year %></td>
+        <td>
+          <%= link_to(edit_shipping_company_vehicle_path(@shipping_company.id, v.id)) do %>
+            <%= v.make %> <%= v.model %> <%= v.year %>
+          <% end %>
+        </td>
         <td><%= v.id_plate %></td>
         <td><%= v.load_capacity %></td>
       </tr>
