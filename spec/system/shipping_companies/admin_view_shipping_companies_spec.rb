@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário visita a tela de transportadoras' do
+describe 'Admin visita a tela de transportadoras' do
   it 'sem estar logado como Admin' do
     # Arrange
 

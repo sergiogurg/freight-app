@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário de Admin vê detalhes de uma transportadora' do
+describe 'Admin vê detalhes de uma transportadora' do
   it 'e vê informações adicionais' do
     # Arrange
     Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')

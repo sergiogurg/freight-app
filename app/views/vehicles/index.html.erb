@@ -1,0 +1,20 @@
+<h2>Veículos Cadastrados</h2>
+
+<% if @vehicles.any? %>
+  <table>
+    <tr>
+      <th>Nome do veículo</th>
+      <th>Placa</th>
+      <th>Capacidade de carga (kg)</th>
+    </tr>
+    <% @vehicles.each do |v| %>
+      <tr style="text-align: center;">
+        <td><%= v.make %> <%= v.model %> <%= v.year %></td>
+        <td><%= v.id_plate %></td>
+        <td><%= v.load_capacity %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nenhum veículo cadastrado.</p>
+<% end %>

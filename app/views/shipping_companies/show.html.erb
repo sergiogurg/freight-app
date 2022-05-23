@@ -1,4 +1,7 @@
 <h2>Transportadora <%= @shipping_company.brand_name %></h2>
+<div>
+  <%= link_to 'Veículos cadastrados', shipping_company_vehicles_path(@shipping_company.id) %>
+</div>
 <dl>
   <dt><strong>Razão Social:</strong></dt>
   <dd><%= @shipping_company.corporate_name %></dd>

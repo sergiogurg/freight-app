@@ -25,6 +25,9 @@ class ShippingCompaniesController < ApplicationController
     if user_signed_in? && current_user.shipping_company != @shipping_company
       flash[:notice] = 'Usuário, você foi redirecionado por tentar visualizar outra Transportadora.'
       redirect_to root_path
+    elsif !user_signed_in? && !admin_signed_in?
+      flash[:notice] = 'Visitantes não podem visualizar detalhes de uma Transportadora.'
+      redirect_to root_path
     end
   end
 

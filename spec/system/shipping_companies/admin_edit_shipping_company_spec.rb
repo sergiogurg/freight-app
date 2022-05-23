@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário edita uma transportadora' do
+describe 'Admin edita uma transportadora' do
   it 'a partir da tela inicial' do
     # Arrange
     Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')

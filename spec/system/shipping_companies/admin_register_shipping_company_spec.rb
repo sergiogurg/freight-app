@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário cadastra transportadora' do
+describe 'Admin cadastra transportadora' do
 
   it 'e volta para a lista de transportadoras' do
     # Arrange
