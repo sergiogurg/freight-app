@@ -3,6 +3,25 @@
   <%= link_to 'Cadastrar Intervalos de Volume', new_shipping_company_volume_price_path(@shipping_company.id) %>
 </div>
 
+<% if @volume_prices.any? %>
+  
+    <table style="text-align: center;">
+      <tr>
+        <th>Volume Inicial</th>
+        <th>Volume Final</th>
+        <th>Preço por km</th> 
+      </tr>
+      <% @volume_prices.each do |vp| %>
+        <tr>
+          <td><%= vp.initial_volume %></td>
+          <td><%= vp.final_volume %></td>
+          <td><%= vp.price %></td>
+        </tr>
+      <% end %>
+    </table>
+<% else %>
+  <p>Nenhum preço-volume cadastrado.</p>
+<% end %>
 
 <br>
 <br>

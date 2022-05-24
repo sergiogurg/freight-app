@@ -4,14 +4,17 @@
     <div>
       <%= f.label :initial_volume %>
       <%= f.number_field :initial_volume, step: 0.001 %>
+      <%= @volume_price.errors.full_messages_for(:initial_volume)[0] if @volume_price.errors.full_messages_for(:initial_volume).any? %>
     </div>
     <div>
       <%= f.label :final_volume %>
       <%= f.number_field :final_volume, step: 0.001 %>
+      <%= @volume_price.errors.full_messages_for(:final_volume)[0] if @volume_price.errors.full_messages_for(:final_volume).any? %>
     </div>
     <div>
       <%= f.label :price %>
       <%= f.number_field :price, step: 0.01 %>
+      <%= @volume_price.errors.full_messages_for(:price)[0] if @volume_price.errors.full_messages_for(:price).any? %>
     </div>
     <div>
       <%= f.submit 'Enviar' %>
