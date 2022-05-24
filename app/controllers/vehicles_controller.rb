@@ -1,7 +1,7 @@
 class VehiclesController < ApplicationController
-  before_action :set_shipping_company, only: [:index, :new, :create, :edit]
+  before_action :set_shipping_company
   before_action :vehicle_params, only: [:create, :update]
-  before_action :set_vehicle, only: [:edit]
+  before_action :set_vehicle, only: [:edit, :update]
 
   def index
     @vehicles = Vehicle.all
@@ -15,14 +15,23 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params())
     if @vehicle.save()
       flash[:notice] = 'Veículo cadastrado com sucesso.'
-      redirect_to shipping_company_vehicles_path(@shipping_company.id)
+      redirect_to shipping_company_vehicles_path
     else
       flash.now[:notice] = 'Não foi possível cadastrar o veículo.'
-      render 'new'
+      render 'edit'
     end
   end
 
-  def edit
+  def edit; end
+
+  def update
+    if @vehicle.update(vehicle_params())
+      flash[:notice] = 'Veículo atualizado com sucesso.'
+      redirect_to shipping_company_vehicles_path(@shipping_company.id)
+    else
+      flash.now[:notice] = 'Não foi possível atualizar o veículo.'
+      render 'new'
+    end
 
   end
 
