@@ -1,0 +1,21 @@
+<h3>Criar Intervalo de Preço por Volume</h3>
+
+  <%= form_with(model: [@shipping_company, @volume_price]) do |f| %>
+    <div>
+      <%= f.label :initial_volume %>
+      <%= f.number_field :initial_volume, step: 0.001 %>
+    </div>
+    <div>
+      <%= f.label :final_volume %>
+      <%= f.number_field :final_volume, step: 0.001 %>
+    </div>
+    <div>
+      <%= f.label :price %>
+      <%= f.number_field :price, step: 0.01 %>
+    </div>
+    <div>
+      <%= f.submit 'Enviar' %>
+    </div>
+  <% end %>
+
+<%= link_to 'Voltar', shipping_company_volume_prices_path %>

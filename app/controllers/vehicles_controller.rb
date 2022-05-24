@@ -1,6 +1,5 @@
 class VehiclesController < ApplicationController
   before_action :set_shipping_company
-  before_action :vehicle_params, only: [:create, :update]
   before_action :set_vehicle, only: [:edit, :update]
 
   def index

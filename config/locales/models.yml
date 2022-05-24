@@ -3,6 +3,7 @@ pt-BR:
     models:
       shipping_company: 'Transportadora'
       vehicle: 'Veículo'
+      volume_price: 'Preço por Volume'
     attributes:
       shipping_company:
         corporate_name: "Razão Social"
@@ -16,3 +17,7 @@ pt-BR:
         model: "Modelo"
         year: "Ano"
         load_capacity: "Capacidade de carga"
+      volume_price:
+        initial_volume: "Volume inicial"
+        final_volume: "Volume final"
+        price: "Preço-volume"

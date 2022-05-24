@@ -2,6 +2,13 @@
 <div>
   <%= link_to 'Veículos cadastrados', shipping_company_vehicles_path(@shipping_company.id) %>
 </div>
+<div>
+  <%= link_to 'Tabela de Preços por Volume', shipping_company_volume_prices_path(@shipping_company.id) %>
+</div>
+
+
+  <%# LINK_TO PARA O INDEX DE VOLUME_PRICES %>
+
 <dl>
   <dt><strong>Razão Social:</strong></dt>
   <dd><%= @shipping_company.corporate_name %></dd>
