@@ -45,7 +45,7 @@ class VolumePricesController < ApplicationController
 
   def avoid_overlapping(volume)
     flag = false
-    query = VolumePrice.where('initial_volume < ? AND final_volume > ?', volume, volume)
+    query = VolumePrice.where('initial_volume <= ? AND final_volume >= ?', volume, volume)
     if query.any?
       flag = true
     end
