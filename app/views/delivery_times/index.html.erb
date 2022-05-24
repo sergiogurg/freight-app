@@ -1,0 +1,27 @@
+<h3>Tabela de Prazos</h3>
+<div>
+  <%= link_to 'Cadastrar Intervalos de Distância', new_shipping_company_delivery_time_path(@shipping_company.id) %>
+</div>
+
+<% if @delivery_times.any? %>
+    <table style="text-align: center;">
+      <tr>
+        <th>Distância Inicial</th>
+        <th>Distância Final</th>
+        <th>Dias Úteis</th> 
+      </tr>
+      <% @delivery_times.each do |dt| %>
+        <tr>
+          <td><%= dt.initial_distance %></td>
+          <td><%= dt.final_distance %></td>
+          <td><%= dt.weekdays %></td>
+        </tr>
+      <% end %>
+    </table>
+<% else %>
+  <p>Nenhum intervalo cadastrado.</p>
+<% end %>
+
+<div>
+  <%= link_to 'Voltar', shipping_company_path(@shipping_company.id) %>
+</div>

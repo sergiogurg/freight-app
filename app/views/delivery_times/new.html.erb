@@ -1,0 +1,24 @@
+<h3>Criar Intervalo de Distâncias</h3>
+
+  <%= form_with(model: [@shipping_company, @delivery_time]) do |f| %>
+    <div>
+      <%= f.label :initial_distance %>
+      <%= f.number_field :initial_distance, step: 0.1 %>
+      <%= @delivery_time.errors.full_messages_for(:initial_volume)[0] if @delivery_time.errors.full_messages_for(:initial_volume).any? %>
+    </div>
+    <div>
+      <%= f.label :final_distance %>
+      <%= f.number_field :final_distance, step: 0.1 %>
+      <%= @delivery_time.errors.full_messages_for(:final_distance)[0] if @delivery_time.errors.full_messages_for(:final_distance).any? %>
+    </div>
+    <div>
+      <%= f.label :weekdays %>
+      <%= f.number_field :weekdays, step: 0.01 %>
+      <%= @delivery_time.errors.full_messages_for(:weekdays)[0] if @delivery_time.errors.full_messages_for(:weekdays).any? %>
+    </div>
+    <div>
+      <%= f.submit 'Enviar' %>
+    </div>
+  <% end %>
+
+<%= link_to 'Voltar', shipping_company_volume_prices_path %>

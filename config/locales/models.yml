@@ -5,6 +5,7 @@ pt-BR:
       vehicle: 'Veículo'
       volume_price: 'Preço por Volume'
       weight_price: 'Preço por Peso'
+      delivery_time: 'Prazo de Entrega'
     attributes:
       shipping_company:
         corporate_name: "Razão Social"
@@ -26,3 +27,7 @@ pt-BR:
         initial_weight: "Peso inicial"
         final_weight: "Peso final"
         price: "Preço-peso"
+      delivery_time:
+        initial_distance: "Distância inicial"
+        final_distance: "Distância final"
+        weekdays: "Dias úteis"
