@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   resources :shipping_companies, only: [:index, :show, :new, :create, :edit, :update] do
     resources :vehicles, only: [:index, :new, :create, :edit, :update]
     resources :volume_prices, only: [:index, :new, :create]
+    resources :weight_prices, only: [:index, :new, :create]
   end
 end

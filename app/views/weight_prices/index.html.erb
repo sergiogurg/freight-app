@@ -1,0 +1,28 @@
+<h3>Tabela de Preços por Peso</h3>
+<div>
+  <%= link_to 'Cadastrar Intervalos de Peso', new_shipping_company_weight_price_path(@shipping_company.id) %>
+</div>
+
+<% if @weight_prices.any? %>
+  
+    <table style="text-align: center;">
+      <tr>
+        <th>Peso Inicial</th>
+        <th>Peso Final</th>
+        <th>Preço por km</th> 
+      </tr>
+      <% @weight_prices.each do |wp| %>
+        <tr>
+          <td><%= wp.initial_weight %></td>
+          <td><%= wp.final_weight %></td>
+          <td><%= wp.price %></td>
+        </tr>
+      <% end %>
+    </table>
+<% else %>
+  <p>Nenhum preço-peso cadastrado.</p>
+<% end %>
+
+<div>
+  <%= link_to 'Voltar', shipping_company_path(@shipping_company.id) %>
+</div>

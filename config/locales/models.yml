@@ -4,6 +4,7 @@ pt-BR:
       shipping_company: 'Transportadora'
       vehicle: 'Veículo'
       volume_price: 'Preço por Volume'
+      weight_price: 'Preço por Peso'
     attributes:
       shipping_company:
         corporate_name: "Razão Social"
@@ -21,3 +22,7 @@ pt-BR:
         initial_volume: "Volume inicial"
         final_volume: "Volume final"
         price: "Preço-volume"
+      weight_price:
+        initial_weight: "Peso inicial"
+        final_weight: "Peso final"
+        price: "Preço-peso"

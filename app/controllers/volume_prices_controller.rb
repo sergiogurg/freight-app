@@ -34,7 +34,7 @@ class VolumePricesController < ApplicationController
   end
 
   def set_volume_price
-    @vehicle = VolumePrice.find(params[:id])
+    @volume_price = VolumePrice.find(params[:id])
   end
 
   def volume_price_params
