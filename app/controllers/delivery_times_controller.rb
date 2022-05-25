@@ -1,6 +1,6 @@
 class DeliveryTimesController < ApplicationController
   before_action :set_shipping_company
-  before_action
+  before_action :only_admin_or_user_allowed
 
   def index
     @delivery_times = DeliveryTime.all
@@ -51,5 +51,12 @@ class DeliveryTimesController < ApplicationController
     end
     return flag
   end
-  
+
+  def only_admin_or_user_allowed
+    if !admin_signed_in? && !user_signed_in?
+      flash[:notice] = 'Área permitida somente para Admins e Usuários'
+      redirect_to root_path
+    end
+  end
+
 end

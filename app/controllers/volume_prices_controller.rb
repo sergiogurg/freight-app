@@ -1,6 +1,7 @@
 class VolumePricesController < ApplicationController
   before_action :set_shipping_company
   before_action :set_volume_price, only: [:edit, :update]
+  before_action :only_admin_or_user_allowed
 
   def index
     @volume_prices = VolumePrice.all
@@ -50,6 +51,13 @@ class VolumePricesController < ApplicationController
       flag = true
     end
     return flag
+  end
+
+  def only_admin_or_user_allowed
+    if !admin_signed_in? && !user_signed_in?
+      flash[:notice] = 'Área permitida somente para Admins e Usuários'
+      redirect_to root_path
+    end
   end
 
 end

@@ -1,5 +1,6 @@
 class ShippingCompaniesController < ApplicationController
   before_action :authenticate_admin!, except: [:show]
+  before_action :only_admin_or_user_allowed, only: [:show]
   before_action :set_shipping_company, only: [:show, :edit, :update]
 
   def index
@@ -25,9 +26,6 @@ class ShippingCompaniesController < ApplicationController
     if user_signed_in? && current_user.shipping_company != @shipping_company
       flash[:notice] = 'Usuário, você foi redirecionado por tentar visualizar outra Transportadora.'
       redirect_to root_path
-    elsif !user_signed_in? && !admin_signed_in?
-      flash[:notice] = 'Visitantes não podem visualizar detalhes de uma Transportadora.'
-      redirect_to root_path
     end
   end
 
@@ -43,6 +41,14 @@ class ShippingCompaniesController < ApplicationController
     end
   end
 
+  def budget_form
+
+  end
+
+  def budget_search
+
+  end
+
   private
 
   def set_shipping_company
@@ -51,6 +57,13 @@ class ShippingCompaniesController < ApplicationController
 
   def shipping_company_params
     params.require(:shipping_company).permit(:corporate_name, :brand_name, :registration_number, :email_domain, :address)
+  end
+
+  def only_admin_or_user_allowed
+    if !admin_signed_in? && !user_signed_in?
+      flash[:notice] = 'Área permitida somente para Admins e Usuários'
+      redirect_to root_path
+    end
   end
 
 end

@@ -1,0 +1,28 @@
+<h2>Consulta de Orçamento</h2>
+
+<%= form_with(url: budget_search_shipping_companies_path, method: :get) do |f| %>
+  <div>
+    <%= f.label :length, 'Comprimento (cm)' %>
+    <%= f.number_field :length, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :height, 'Altura (cm)' %>
+    <%= f.number_field :height, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :width, 'Largura (cm)' %>
+    <%= f.number_field :width, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :weight, 'Peso (kg)' %>
+    <%= f.number_field :weight, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :distance, 'Distância (km)' %>
+    <%= f.number_field :distance, step: 0.1 %>
+  </div>
+  <div>
+    <%= f.submit 'Calcular Fretes' %>
+  </div>
+  
+<% end %>

@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
   before_action :set_shipping_company
   before_action :set_vehicle, only: [:edit, :update]
+  before_action :only_admin_or_user_allowed
 
   def index
     @vehicles = Vehicle.all
@@ -49,4 +50,12 @@ class VehiclesController < ApplicationController
     vp.merge!({shipping_company: set_shipping_company()})
     return vp
   end
+
+  def only_admin_or_user_allowed
+    if !admin_signed_in? && !user_signed_in?
+      flash[:notice] = 'Área permitida somente para Admins e Usuários'
+      redirect_to root_path
+    end
+  end
+
 end

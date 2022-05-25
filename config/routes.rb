@@ -10,5 +10,10 @@ Rails.application.routes.draw do
     resources :volume_prices, only: [:index, :new, :create]
     resources :weight_prices, only: [:index, :new, :create]
     resources :delivery_times, only: [:index, :new, :create]
+    collection do
+      get 'budget_form'
+      get 'budget_search'
+    end
   end
+
 end
