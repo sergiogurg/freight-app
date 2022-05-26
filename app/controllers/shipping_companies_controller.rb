@@ -41,9 +41,7 @@ class ShippingCompaniesController < ApplicationController
     end
   end
 
-  def budget_form
-
-  end
+  def budget_form; end
 
   def budget_search
     params.each_value do |value|
@@ -60,76 +58,67 @@ class ShippingCompaniesController < ApplicationController
     weight = params[:weight]
     distance = params[:distance].to_f
 
-    @dt_sc_names = []
-    @dt_weekdays = []
-    @dt_array = []
-    ShippingCompany.all.each do |sc|
-      dt = search_delivery_time(distance: distance, sc_id: sc.id)
-      if dt != nil
-        @dt_array << dt
-        @dt_sc_names << dt.shipping_company.brand_name
-        @dt_weekdays << dt.weekdays
-      end
-    end
-
-    @vp_sc_names = []
-    @vp_prices = []
-    @vp_array = []
+    vp_sc_names = []
+    vp_prices = []
+    vp_array = []
+    wp_sc_names = []
+    wp_prices = []
+    wp_array = []
+    dt_sc_names = []
+    dt_weekdays = []
+    dt_array = []
     ShippingCompany.all.each do |sc|
       vp = search_volume_price(volume: volume, distance: distance, sc_id: sc.id)
       if vp != nil
-        @vp_array << vp
-        @vp_sc_names << vp.shipping_company.brand_name
-        @vp_prices << vp.price
+        vp_array << vp
+        vp_sc_names << vp.shipping_company.brand_name
+        vp_prices << vp.price
       end
-    end
-
-    @wp_sc_names = []
-    @wp_prices = []
-    @wp_array = []
-    ShippingCompany.all.each do |sc|
       wp = search_weight_price(weight: weight, distance: distance, sc_id: sc.id)
       if wp != nil
-        @wp_array << wp
-        @wp_sc_names << wp.shipping_company.brand_name
-        @wp_prices << wp.price
+        wp_array << wp
+        wp_sc_names << wp.shipping_company.brand_name
+        wp_prices << wp.price
+      end
+      dt = search_delivery_time(distance: distance, sc_id: sc.id)
+      if dt != nil
+        dt_array << dt
+        dt_sc_names << dt.shipping_company.brand_name
+        dt_weekdays << dt.weekdays
       end
     end
 
     # Se algum parametro da query não estiver contido nos intervalos de alguma transportadora:
-    @sc_names = @dt_sc_names.intersection(@vp_sc_names, @wp_sc_names)
+    sc_names = dt_sc_names.intersection(vp_sc_names, wp_sc_names)
 
-    @dt_inters_weekdays = []
-    @vp_inters_prices = []
-    @wp_inters_prices = []
-    @sc_names.each do |sc_name|
-      @dt_array.each do |dt_datum|
+    dt_inters_weekdays = []
+    vp_inters_prices = []
+    wp_inters_prices = []
+    sc_names.each do |sc_name|
+      dt_array.each do |dt_datum|
         if dt_datum.shipping_company.brand_name == sc_name
-          @dt_inters_weekdays << dt_datum.weekdays
+          dt_inters_weekdays << dt_datum.weekdays
         end
       end
-      @vp_array.each do |vp_datum|
+      vp_array.each do |vp_datum|
         if vp_datum.shipping_company.brand_name == sc_name
-          @vp_inters_prices << vp_datum.price
+          vp_inters_prices << vp_datum.price
         end
       end
-      @wp_array.each do |wp_datum|
+      wp_array.each do |wp_datum|
         if wp_datum.shipping_company.brand_name == sc_name
-          @wp_inters_prices << wp_datum.price
+          wp_inters_prices << wp_datum.price
         end
       end
     end
 
     # (Preço por Volume + Preço por Peso) * Distância:
-    @prices = []
-    range = 0..(@sc_names.length - 1)
+    prices = []
+    range = 0..(sc_names.length - 1)
     for i in range do
-      @prices << (@vp_inters_prices[i] + @wp_inters_prices[i])*distance
+      prices << (vp_inters_prices[i] + wp_inters_prices[i])*distance
     end
-
-    #
-    @matrix = [@sc_names, @prices, @dt_inters_weekdays].transpose()
-
+    @matrix = [sc_names, prices, dt_inters_weekdays].transpose()
   end
 
   private
@@ -153,12 +142,6 @@ class ShippingCompaniesController < ApplicationController
     length*height*width
   end
 
-  def search_delivery_time(distance:, sc_id:)
-    delivery_time_one_element_array = DeliveryTime.where('initial_distance <= ? AND final_distance >= ? AND shipping_company_id == ?', distance, distance, sc_id)
-    delivery_time = delivery_time_one_element_array[0]
-    return delivery_time
-  end
-
   def search_volume_price(volume:, distance:, sc_id:)
     volume_price_one_element_array = VolumePrice.where('initial_volume <= ? AND final_volume >= ? AND shipping_company_id == ?', volume, volume, sc_id)
     volume_price = volume_price_one_element_array[0]
@@ -171,21 +154,10 @@ class ShippingCompaniesController < ApplicationController
     return weight_price
   end
 
-  # def search_price(volume:, weight:, distance:, sc_id:)
-  #   volume_price_one_element_array = VolumePrice.where('initial_volume <= ? AND final_volume >= ? AND shipping_company_id == ?', volume, volume, sc_id)
-  #   volume_price = volume_price_one_element_array[0]
-
-  #   weight_price_one_element_array = WeightPrice.where('initial_weight <= ? AND final_weight >= ? AND shipping_company_id == ?', weight, weight, sc_id)
-  #   weight_price = weight_price_one_element_array[0]
-
-  #   price = (volume_price.price + weight_price.price)*distance
-
-  #   return price
-  # end
-
-  # def search_price(volume, weight)
-  #   vps = VolumePrice.where('initial_volume <= ? AND final_volume >= ?', volume, volume)
-  #   wps = WeightPrice.where('initial_weight <= ? AND final_weight >= ?', weight, weight)
-  # end
+  def search_delivery_time(distance:, sc_id:)
+    delivery_time_one_element_array = DeliveryTime.where('initial_distance <= ? AND final_distance >= ? AND shipping_company_id == ?', distance, distance, sc_id)
+    delivery_time = delivery_time_one_element_array[0]
+    return delivery_time
+  end
 
 end
