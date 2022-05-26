@@ -88,9 +88,18 @@ class ShippingCompaniesController < ApplicationController
       end
     end
 
-    # Se algum parametro da query não estiver contido nos intervalos de alguma transportadora:
     sc_names = dt_sc_names.intersection(vp_sc_names, wp_sc_names)
-
+    # Se não houver transportadora ou se não houver alguma que satisfaça os requisitos:
+    @flag_no_scs = false
+    @flag_no_suitable_scs = false
+    if ShippingCompany.all.empty?
+      @flag_no_scs = true
+      flash.now[:notice] = 'Nenhuma Transportadora cadastrada.'
+    elsif !@flag_no_scs && sc_names.empty?
+      @flag_no_suitable_scs = true
+      flash.now[:notice] = 'Nenhuma Transportadora atendeu aos requisitos.'
+    end
+    # Se algum parametro da query não estiver contido nos intervalos de alguma transportadora:
     dt_inters_weekdays = []
     vp_inters_prices = []
     wp_inters_prices = []

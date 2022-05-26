@@ -22,7 +22,7 @@
         Ordens de Serviço |
         Rastreamento de Entrega |
         <% if admin_signed_in? %>
-          <%= link_to 'Consulta de Orçamento', budget_form_shipping_companies_path %> |
+          <%= link_to 'Consulta de Preços', budget_form_shipping_companies_path %> |
           <%= current_admin.email %>
           <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
         <% elsif user_signed_in? %>

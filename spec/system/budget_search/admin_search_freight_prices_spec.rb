@@ -9,17 +9,80 @@ describe 'Administrador realiza consulta de preços' do
     login_as(admin, :scope => :admin)
     visit root_path
     within('nav') do
-      click_on 'Consulta de Orçamento'
+      click_on 'Consulta de Preços'
     end
 
     # Assert
-    expect(page).to have_content('Consulta de Orçamento')
+    expect(page).to have_content('Consulta de Preços')
     expect(page).to have_field('Comprimento')
     expect(page).to have_field('Altura')
     expect(page).to have_field('Largura')
     expect(page).to have_field('Peso')
     expect(page).to have_field('Distância')
     expect(page).to have_button('Calcular Fretes')
+  end
+
+  it 'mas não há nenhuma Transportadora cadastrada' do
+    # Arrange
+    admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
+
+    # Act
+    login_as(admin, :scope => :admin)
+    visit root_path
+    within('nav') do
+      click_on 'Consulta de Preços'
+    end
+    fill_in 'Comprimento', with: 115
+    fill_in 'Altura', with: 91
+    fill_in 'Largura', with: 76
+    fill_in 'Peso', with: 6.42
+    fill_in 'Distância', with: 183
+    click_on 'Calcular Fretes'
+
+    # Assert
+    expect(page).to have_content('Nenhuma Transportadora cadastrada.')
+    expect(page).not_to have_css('table')
+  end
+
+  it 'mas nenhuma Transportadora atende aos requisitos da entrega' do
+    # Arrange Admin
+    admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
+
+    # Arrange Transportadora 1
+    first_sc = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
+
+    VolumePrice.create!(initial_volume: 0, final_volume: 0.250, price: 0.75, shipping_company: first_sc)
+    VolumePrice.create!(initial_volume: 0.251, final_volume: 0.500, price: 1.40, shipping_company: first_sc)
+    VolumePrice.create!(initial_volume: 0.501, final_volume: 0.750, price: 1.90, shipping_company: first_sc)
+    VolumePrice.create!(initial_volume: 0.751, final_volume: 1.000, price: 2.50, shipping_company: first_sc)
+
+    WeightPrice.create!(initial_weight: 0, final_weight: 5.00, price: 0.350, shipping_company: first_sc)
+    WeightPrice.create!(initial_weight: 5.01, final_weight: 10.00, price: 0.80, shipping_company: first_sc)
+    WeightPrice.create!(initial_weight: 10.01, final_weight: 15.00, price: 1.55, shipping_company: first_sc)
+    WeightPrice.create!(initial_weight: 15.01, final_weight: 20.00, price: 2.10, shipping_company: first_sc)
+
+    DeliveryTime.create!(initial_distance: 0.0, final_distance: 100.0, weekdays: 2, shipping_company: first_sc)
+    DeliveryTime.create!(initial_distance: 100.1, final_distance: 300.0, weekdays: 5, shipping_company: first_sc)
+    DeliveryTime.create!(initial_distance: 300.1, final_distance: 500.0, weekdays: 8, shipping_company: first_sc)
+    DeliveryTime.create!(initial_distance: 500.1, final_distance: 800.0, weekdays: 14, shipping_company: first_sc)
+    
+    # Act
+    login_as(admin, :scope => :admin)
+    visit root_path
+    within('nav') do
+      click_on 'Consulta de Preços'
+    end
+    fill_in 'Comprimento', with: 99_999
+    fill_in 'Altura', with: 99_999
+    fill_in 'Largura', with: 99_999
+    fill_in 'Peso', with: 99_999
+    fill_in 'Distância', with: 99_999
+    click_on 'Calcular Fretes'
+
+    # Assert
+    # within('main div') do
+      expect(page).to have_content('Nenhuma Transportadora atendeu aos requisitos.')
+    # end
   end
 
   it 'e cada Transportadora mostra o seu orçamento e o seu prazo de entrega' do
@@ -102,7 +165,7 @@ describe 'Administrador realiza consulta de preços' do
     login_as(admin, :scope => :admin)
     visit root_path
     within('nav') do
-      click_on 'Consulta de Orçamento'
+      click_on 'Consulta de Preços'
     end
     fill_in 'Comprimento', with: 115
     fill_in 'Altura', with: 91
