@@ -1,0 +1,36 @@
+<h2>Nova Ordem de Serviço</h2>
+
+<%= form_with(model: @order) do |f| %>
+  <div>
+    <%= f.label :origin_address %>
+    <%= f.text_field :origin_address %>
+  </div>
+  <div>
+    <%= f.label :product_length %>
+    <%= f.number_field :product_length, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :product_height %>
+    <%= f.number_field :product_height, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :product_width %>
+    <%= f.number_field :product_width, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :product_weight %>
+    <%= f.number_field :product_weight, step: 0.01 %>
+  </div>
+  <div>
+    <%= f.label :destination_address %>
+    <%= f.text_field :destination_address %>
+  </div>
+  <div>
+    <%= f.label :shipping_company_id, 'Transportadora' %>
+    <%= f.collection_select :shipping_company_id, @shipping_companies, :id, :brand_name %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+  
+<% end %>

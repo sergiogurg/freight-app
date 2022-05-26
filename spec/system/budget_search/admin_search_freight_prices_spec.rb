@@ -22,6 +22,20 @@ describe 'Administrador realiza consulta de preços' do
     expect(page).to have_button('Calcular Fretes')
   end
 
+  it 'e volta para a página inicial' do
+    # Arrange
+    admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
+
+    # Act
+    login_as(admin, :scope => :admin)
+    visit root_path
+    click_on 'Consulta de Preços'
+    click_on 'Voltar'
+
+    # Assert
+    expect(current_path).to eq(root_path)
+  end
+
   it 'mas não há nenhuma Transportadora cadastrada' do
     # Arrange
     admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
