@@ -3,8 +3,10 @@ require 'rails_helper'
 describe 'Admin cadastra uma nova Ordem de Serviço' do
   it 'a partir do menu' do
     # Arrange
+    admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
     # Act
+    login_as(admin, :scope => :admin)
     visit root_path
     within('nav') do
       click_on 'Ordens de Serviço'
@@ -22,25 +24,21 @@ describe 'Admin cadastra uma nova Ordem de Serviço' do
     expect(page).to have_select('Transportadora')
   end
 
-  # it 'com sucesso' do
-  #   # Arrange
+  it 'com sucesso' do
+    # Arrange
+    admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
 
-
-  #   # Act
-
+    # Act
+    login_as(admin, :scope => :admin)
+    visit new_order_path
+    fill_in 'Endereço para retirada', with: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP'
+    fill_in 'Comprimento do produto', with: 115
+    fill_in 'Altura do produto', with: 91
+    fill_in 'Largura do produto', with: 76
+    fill_in 'Peso do produto', with: 6.42
+    fill_in 'Endereço para retirada', with: 'Rua Padre Valdevino, 1880, Fortaleza - CE'
     
-  #   # Assert
+    # Assert
 
-  # end
-
-  # it 'mas os campos obrigatórios estão vazios' do
-  #   # Arrange
-
-
-  #   # Act
-
-    
-  #   # Assert
-
-  # end
+  end
 end

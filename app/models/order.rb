@@ -7,6 +7,9 @@ class Order < ApplicationRecord
 
   before_validation :generate_id_code
 
+  validates :origin_address, :product_length, :product_height, :product_width, :product_weight, :destination_address, :status, presence: true
+  validates :product_length, :product_height, :product_width, :product_weight, numericality: { greater_than_or_equal_to: 0 }
+
   private
 
   def generate_id_code

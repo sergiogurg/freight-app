@@ -35,8 +35,8 @@ pt-BR:
       order:
         origin_address: "Endereço para retirada"
         id_code: "Código identificador"
-        product_length: "Comprimento do produto"
-        product_height: "Altura do produto"
-        product_width: "Largura do produto"
-        product_weight: "Peso do produto"
+        product_length: "Comprimento do produto (cm)"
+        product_height: "Altura do produto (cm)"
+        product_width: "Largura do produto (cm)"
+        product_weight: "Peso do produto (kg)"
         destination_address: "Endereço de destino"

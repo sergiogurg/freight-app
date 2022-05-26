@@ -4,6 +4,7 @@
   <div>
     <%= f.label :origin_address %>
     <%= f.text_field :origin_address %>
+    <%= @order.errors.full_messages_for(:origin_address)[0] if @order.errors.full_messages_for(:origin_address).any? %>
   </div>
   <div>
     <%= f.label :product_length %>
