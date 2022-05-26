@@ -1,6 +1,10 @@
 <h2>Resultado do Cálculo de Frete</h2>
 
-<% if !@flag_no_scs && !@flag_no_suitable_scs %>
+<% if @flag_no_scs %>
+  <p>Nenhuma Transportadora cadastrada.</p>
+<% elsif @flag_no_suitable_scs %>
+  <p>Nenhuma Transportadora atendeu aos requisitos.</p>
+<% else %>
   <table style="text-align: center;">
     <tr>
       <th>Transportadora</th>

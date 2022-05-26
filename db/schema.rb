@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_24_193946) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_26_182327) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -31,6 +31,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_193946) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["shipping_company_id"], name: "index_delivery_times_on_shipping_company_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "origin_address"
+    t.string "id_code"
+    t.decimal "product_length"
+    t.decimal "product_height"
+    t.decimal "product_width"
+    t.decimal "product_weight"
+    t.string "destination_address"
+    t.integer "status", default: 0
+    t.integer "shipping_company_id"
+    t.integer "vehicle_id"
+    t.integer "route_update_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["route_update_id"], name: "index_orders_on_route_update_id"
+    t.index ["shipping_company_id"], name: "index_orders_on_shipping_company_id"
+    t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
+  end
+
+  create_table "route_updates", force: :cascade do |t|
+    t.string "date"
+    t.string "time"
+    t.string "current_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "shipping_companies", force: :cascade do |t|
@@ -90,6 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_24_193946) do
   end
 
   add_foreign_key "delivery_times", "shipping_companies"
+  add_foreign_key "orders", "route_updates"
+  add_foreign_key "orders", "shipping_companies"
+  add_foreign_key "orders", "vehicles"
   add_foreign_key "users", "shipping_companies"
   add_foreign_key "vehicles", "shipping_companies"
   add_foreign_key "volume_prices", "shipping_companies"

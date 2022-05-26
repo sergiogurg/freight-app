@@ -1,0 +1,2 @@
+class RouteUpdate < ApplicationRecord
+end
