@@ -4,7 +4,7 @@ class WeightPricesController < ApplicationController
   before_action :only_admin_or_user_allowed
 
   def index
-    @weight_prices = WeightPrice.all
+    @weight_prices = WeightPrice.where(shipping_company: @shipping_company)
   end
 
   def new

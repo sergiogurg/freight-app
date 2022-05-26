@@ -4,7 +4,7 @@ class VolumePricesController < ApplicationController
   before_action :only_admin_or_user_allowed
 
   def index
-    @volume_prices = VolumePrice.all
+    @volume_prices = VolumePrice.where(shipping_company: @shipping_company)
   end
   
   def new

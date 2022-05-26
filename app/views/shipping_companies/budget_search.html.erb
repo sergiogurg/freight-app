@@ -1,0 +1,16 @@
+<h2>Resultado do Cálculo de Frete</h2>
+
+<table style="text-align: center;">
+  <tr>
+    <th>Transportadora</th>
+    <th>Orçamento (R$)</th>
+    <th>Prazo de Entrega (dias úteis)</th>
+  </tr>
+    <% @matrix.each do |row| %>
+      <tr>
+        <% row.each do |item| %>
+          <td><%= item %></td>
+        <% end %>
+      </tr>
+    <% end %>
+</table>

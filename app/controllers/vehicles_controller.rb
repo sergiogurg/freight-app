@@ -4,7 +4,7 @@ class VehiclesController < ApplicationController
   before_action :only_admin_or_user_allowed
 
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.where(shipping_company: @shipping_company)
   end
 
   def new
