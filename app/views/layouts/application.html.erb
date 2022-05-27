@@ -20,6 +20,9 @@
           <%= link_to 'Minha Transportadora', shipping_company_path(current_user.shipping_company_id) %> |
         <% end %>
         <%= link_to 'Ordens de Serviço', orders_path %> |
+        <% if user_signed_in? && current_user.shipping_company != nil %>
+          <%= link_to 'Minhas Ordens de Serviço', sc_orders_shipping_company_path(current_user.shipping_company_id) %> |
+        <% end %>
         Rastreamento de Entrega |
         <% if admin_signed_in? %>
           <%= link_to 'Consulta de Preços', budget_form_shipping_companies_path %> |

@@ -13,6 +13,8 @@ class Order < ApplicationRecord
   private
 
   def generate_id_code
-    self.id_code = SecureRandom.alphanumeric(15).upcase
+    if self.id_code.nil?
+      self.id_code = SecureRandom.alphanumeric(15).upcase
+    end
   end
 end

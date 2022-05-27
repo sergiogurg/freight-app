@@ -33,7 +33,7 @@ describe 'Admin cadastra uma nova Ordem de Serviço' do
     # Act
     login_as(admin, :scope => :admin)
     visit new_order_path
-    fill_in 'Endereço para retirada', with: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP'
+    fill_in 'Endereço para retirada', with: 'Avenida Alberto Byington, 1933, São Paulo - SP'
     fill_in 'Comprimento do produto', with: 115
     fill_in 'Altura do produto', with: 91
     fill_in 'Largura do produto', with: 76

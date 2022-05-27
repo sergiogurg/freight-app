@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       get 'budget_form'
       get 'budget_search'
     end
+    member do
+      get 'sc_orders'
+    end
   end
   resources :orders, only: [:index, :new, :create]
 

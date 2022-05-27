@@ -1,7 +1,8 @@
 class ShippingCompaniesController < ApplicationController
-  before_action :authenticate_admin!, except: [:show]
+  before_action :authenticate_admin!, except: [:show, :sc_orders]
   before_action :only_admin_or_user_allowed, only: [:show]
-  before_action :set_shipping_company, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:sc_orders]
+  before_action :set_shipping_company, only: [:show, :edit, :update, :sc_orders]
 
   def index
     @shipping_companies = ShippingCompany.all
@@ -129,6 +130,10 @@ class ShippingCompaniesController < ApplicationController
       prices << (vp_inters_prices[i] + wp_inters_prices[i])*distance
     end
     @matrix = [sc_names, prices, dt_inters_weekdays].transpose()
+  end
+
+  def sc_orders
+    @orders = Order.where(shipping_company: @shipping_company)
   end
 
   private

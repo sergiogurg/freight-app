@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :only_admin_or_user_allowed
+  before_action :authenticate_admin!, except: [:show]
+  before_action :only_admin_or_user_allowed, only: [:show]
   before_action :order_params, only: [:create]
 
   def index
@@ -20,6 +21,13 @@ class OrdersController < ApplicationController
     else
       flash.now[:notice] = 'Não foi possível cadastrar a Ordem de Serviço.'
       render 'new'
+    end
+  end
+
+  def show
+    if user_signed_in? && current_user.shipping_company != @order.shipping_company
+      flash[:notice] = 'Usuário, você foi redirecionado por tentar visualizar uma Ordem de Serviço de outra Transportadora.'
+      redirect_to root_path
     end
   end
 

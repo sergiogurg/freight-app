@@ -1,0 +1,28 @@
+<h2>Ordens de Serviço da Transportadora <%= @shipping_company.brand_name %></h2>
+
+<% if @orders.any? %>
+  <table style="text-align: center;">
+    <tr>
+      <th>Código</th>
+      <th>Status</th>
+      <th>Endereço de Origem</th>
+      <th>Endereço de Destino</th>
+      <th>Veículo</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id_code %></td>
+        <td><%= order.status %></td>
+        <td><%= order.origin_address %></td>
+        <td><%= order.destination_address %></td>
+        <% if order.vehicle.nil? %>
+          <td>Sem veículo</td>
+        <% else %>
+          <td><%= order.vehicle.make %> <%= order.vehicle.model %> <%= order.vehicle.year %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nenhuma Ordem de Serviço recebida.</p>
+<% end %>
