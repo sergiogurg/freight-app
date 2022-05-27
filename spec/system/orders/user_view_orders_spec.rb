@@ -24,5 +24,7 @@ describe 'Usuário de Transportadora vê as Ordens de Serviço encaminhadas a el
     expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
     expect(page).to have_content('Endereço de Destino')
     expect(page).to have_content('Rua Padre Valdevino, 1880, Fortaleza - CE')
+    expect(page).to have_content('Detalhes')
+    expect(page).to have_link('Ver Detalhes')
   end
 end

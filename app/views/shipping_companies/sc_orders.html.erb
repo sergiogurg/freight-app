@@ -8,6 +8,7 @@
       <th>Endereço de Origem</th>
       <th>Endereço de Destino</th>
       <th>Veículo</th>
+      <th>Detalhes</th>
     </tr>
     <% @orders.each do |order| %>
       <tr>
@@ -20,6 +21,7 @@
         <% else %>
           <td><%= order.vehicle.make %> <%= order.vehicle.model %> <%= order.vehicle.year %></td>
         <% end %>
+        <td><%= link_to 'Ver Detalhes', shipping_company_order_path(@shipping_company.id, order.id) %></td>
       </tr>
     <% end %>
   </table>

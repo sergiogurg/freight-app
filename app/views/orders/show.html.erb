@@ -1,0 +1,41 @@
+<h2>Transportadora <%= @order.shipping_company.brand_name %>: Ordem de Serviço <%= @order.id_code %></h2>
+
+<dl>
+  <dt><strong>Status:</strong></dt>
+  <dd><%= @order.status %></dd>
+  <br>
+  <dt><strong>Endereço para retirada:</strong></dt>
+  <dd><%= @order.origin_address %></dd>
+  <dt><strong>Endereço de destino:</strong></dt>
+  <dd><%= @order.destination_address %></dd>
+  <dt><strong>Peso do Produto:</strong></dt>
+  <dd><%= @order.product_weight %></dd>
+  <dt><strong>Comprimento do Produto:</strong></dt>
+  <dd><%= @order.product_length %></dd>
+  <dt><strong>Altura do Produto:</strong></dt>
+  <dd><%= @order.product_height %></dd>
+  <dt><strong>Largura do Produto:</strong></dt>
+  <dd><%= @order.product_width %></dd>
+  <dt><strong>Veículo:</strong></dt>
+  <% if @order.vehicle.nil? %>
+  <dd>Nenhum veículo vinculado</dd>
+  <% else %>
+  <dd><%= @order.vehicle.make %> <%= @order.vehicle.model %> <%= @order.vehicle.year %></dd>
+  <% end %>
+</dl>
+
+<%= button_to 'Aprovar', flag_button_shipping_company_order_path(@order.shipping_company.id, @order.id) %>
+<br>
+<% if @flag_button_clicked %>
+  <%= form_with(model: [@order.shipping_company, @order]) do |f| %>
+    <div>
+      <%= f.label :vehicle_id, 'Veículo' %>
+      <%= f.collection_select :vehicle_id, @order.shipping_company.vehicles, :id, :model %>
+    </div>
+    <br>
+    <div>
+      <%= f.submit 'Vincular Veículo' %>
+    </div>
+  <% end %>
+<% end %>
+

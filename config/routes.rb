@@ -10,13 +10,17 @@ Rails.application.routes.draw do
     resources :volume_prices, only: [:index, :new, :create]
     resources :weight_prices, only: [:index, :new, :create]
     resources :delivery_times, only: [:index, :new, :create]
+    resources :orders, only: [:show, :update] do
+      member do
+        post 'flag_button'
+        patch 'approve'
+      end
+    end
     collection do
       get 'budget_form'
       get 'budget_search'
     end
-    member do
-      get 'sc_orders'
-    end
+    get 'sc_orders', on: :member
   end
   resources :orders, only: [:index, :new, :create]
 
