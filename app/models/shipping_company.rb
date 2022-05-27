@@ -6,4 +6,5 @@ class ShippingCompany < ApplicationRecord
   has_many :volume_prices
   has_many :weight_prices
   has_many :delivery_times
+  has_many :orders
 end

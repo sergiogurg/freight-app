@@ -1,10 +1,37 @@
 <h2>Ordens de Serviço</h2>
 <%= link_to 'Cadastrar Nova Ordem de Serviço', new_order_path %>
-<br>
-<br>
-<br>
-<br>  <%# TABELA COM TODAS AS ORDENS DE SERVIÇO (Colunas: CODIGO, STATUS, TRANSPORTADORA, VEÍCULO, ENDEREÇO ORIGEM, ENDEREÇO) %>
-<br>
-<br>
-<br>
+
+<% if Order.any? %>
+  <table style="text-align: center;">
+    <tr>
+      <th>Código</th>
+      <th>Status</th>
+      <th>Endereço de Origem</th>
+      <th>Endereço de Destino</th>
+      <th>Transportadora</th>
+      <th>Veículo</th>
+    </tr>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.id_code %></td>
+        <td><%= order.status %></td>
+        <td><%= order.origin_address %></td>
+        <td><%= order.destination_address %></td>
+        <% if order.shipping_company == nil %>
+          <td>Sem transportadora</td>
+        <% else %>
+          <td><%= order.shipping_company.brand_name %></td>
+        <% end %>
+        <% if order.vehicle == nil %>
+          <td>Sem Veículo</td>
+        <% else %>
+          <td><%= order.vehicle.make %> <%= order.vehicle.model %> <%= order.vehicle.year %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <p>Nenhuma Ordem de Serviço Cadastrada.</p>
+<% end %>
+
 <%= link_to 'Voltar', root_path %>
