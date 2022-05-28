@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_26_182327) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_28_054836) do
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,10 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_182327) do
     t.integer "status", default: 0
     t.integer "shipping_company_id"
     t.integer "vehicle_id"
-    t.integer "route_update_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["route_update_id"], name: "index_orders_on_route_update_id"
     t.index ["shipping_company_id"], name: "index_orders_on_shipping_company_id"
     t.index ["vehicle_id"], name: "index_orders_on_vehicle_id"
   end
@@ -58,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_182327) do
     t.string "current_location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "order_id", null: false
+    t.index ["order_id"], name: "index_route_updates_on_order_id"
   end
 
   create_table "shipping_companies", force: :cascade do |t|
@@ -117,9 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_26_182327) do
   end
 
   add_foreign_key "delivery_times", "shipping_companies"
-  add_foreign_key "orders", "route_updates"
   add_foreign_key "orders", "shipping_companies"
   add_foreign_key "orders", "vehicles"
+  add_foreign_key "route_updates", "orders"
   add_foreign_key "users", "shipping_companies"
   add_foreign_key "vehicles", "shipping_companies"
   add_foreign_key "volume_prices", "shipping_companies"

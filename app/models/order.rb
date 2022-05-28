@@ -1,7 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :shipping_company, optional: true
   belongs_to :vehicle, optional: true
-  belongs_to :route_update, optional: true
+  has_many :route_updates
 
   enum status: { pending: 0, rejected: 5, approved: 10, delivered: 15 }
 

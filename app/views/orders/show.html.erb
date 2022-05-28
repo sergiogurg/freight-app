@@ -1,5 +1,9 @@
 <h2>Transportadora <%= @order.shipping_company.brand_name %>: Ordem de Serviço <%= @order.id_code %></h2>
 
+<% if @order.approved? %>
+  <%= link_to 'Rota de entrega', shipping_company_order_route_updates_path(@order.shipping_company.id, @order.id) %>
+<% end %>
+
 <dl>
   <dt><strong>Status:</strong></dt>
   <dd><%= @order.status %></dd>

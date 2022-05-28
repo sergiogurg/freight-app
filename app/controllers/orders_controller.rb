@@ -44,6 +44,12 @@ class OrdersController < ApplicationController
     if @order.save()
       @order.approved!
       flash[:notice] = 'Ordem de Serviço aprovada com sucesso.'
+
+      # Cria e vincula route_update:
+      date = Time.now.strftime("%d/%m/%Y")
+      time = Time.now.strftime("%H:%M")
+      origin_location = @order.origin_address
+      route_update = RouteUpdate.create!(date: date, time: time, current_location: origin_location, order: @order)
       redirect_to  shipping_company_order_path(@order.shipping_company.id, @order.id)
     else
       flash.now[:notice] = 'Não foi possível aprovar a Ordem de Serviço.'
@@ -55,8 +61,6 @@ class OrdersController < ApplicationController
     @order.approved!
     redirect_to shipping_company_order_path(@order.shipping_company_id, @order.id)
   end
-
-
 
   private
 
