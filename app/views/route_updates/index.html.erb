@@ -1,1 +1,17 @@
-<h2>Route Update</h2>
+<h2>Rotas da Ordem <%= @order.id_code %></h2>
+
+<% if @route_updates.any? %>
+  <hr>
+  <% @route_updates.each do |ru| %>
+    <dl>
+      <h3>Atualização <%= ru.id %></h3>
+      <dt><strong>Data:</strong></dt>
+      <dd><%= ru.date %></dd>
+      <dt><strong>Hora:</strong></dt>
+      <dd><%= ru.time %></dd>
+      <dt><strong>Localização atual:</strong></dt>
+      <dd><%= ru.current_location %></dd>
+    </dl>
+    <hr>
+  <% end %>
+<% end %>

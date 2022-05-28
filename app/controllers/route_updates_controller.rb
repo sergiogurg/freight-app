@@ -3,7 +3,7 @@ class RouteUpdatesController < ApplicationController
   before_action :set_order
 
   def index
-    
+    @route_updates = RouteUpdate.where(order: @order)
   end
 
   private
