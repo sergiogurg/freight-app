@@ -1,0 +1,11 @@
+<h2>Nova Atualização de Rota da Ordem <%= @order.id_code %></h2>
+
+<%= form_with(model: [@order.shipping_company, @order, @route_update]) do |f| %>
+  <div>
+    <%= f.label :current_location, 'Nova Localização' %>
+    <%= f.text_field :current_location %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar' %>
+  </div>
+<% end %>

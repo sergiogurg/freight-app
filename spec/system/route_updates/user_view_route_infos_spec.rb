@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário de Transportadora vê informações de rotas' do
+describe 'Usuário de Transportadora vê informações de Rotas' do
   it 'a partir do menu' do
     # Arrange
     shipping_company = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
@@ -31,6 +31,5 @@ describe 'Usuário de Transportadora vê informações de rotas' do
     expect(page).to have_content(Time.now.strftime("%H:%M"))
     expect(page).to have_content('ocalização atual')
     expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
-
   end
 end

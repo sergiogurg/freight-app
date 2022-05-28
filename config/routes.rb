@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'budget_search'
     end
     resources :orders, only: [:show, :update] do
-      resources :route_updates, only: [:index]
+      resources :route_updates, only: [:index, :new, :create]
       member do
         post 'flag_button'
         patch 'approve'
