@@ -26,64 +26,66 @@ RSpec.describe Order, type: :model do
       # Assert
       expect(second_order.id_code).not_to eq(first_order.id_code)
     end
-    
-    context '#valid?' do
+  end
+
+  describe '#valid?' do
+    context 'Presence' do
       it 'Falso quando o Endereço para retirada (origin_address) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: '', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando o Comprimento do produto (product_length) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: nil, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando a Altura do produto (product_height) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: nil, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando a Largura do produto (product_width) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: 91, product_width: nil, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando o Peso do produto (product_weight) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: 91, product_width: 76, product_weight: nil, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando o Endereço de destino (destination_address) estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: '', status: 0)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
+  
       it 'Falso quando o status estiver em branco' do
         # Arrange
         order = Order.new(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: '82P5D8BSAJQBARI', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: nil)
-
+  
         # Act and Assert
         expect(order).not_to be_valid
       end
-
     end
   end
+
 end

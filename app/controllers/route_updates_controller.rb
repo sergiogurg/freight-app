@@ -14,7 +14,15 @@ class RouteUpdatesController < ApplicationController
     @route_update = RouteUpdate.new(date: Time.now.strftime("%d/%m/%Y"), time: Time.now.strftime("%H:%M"), order: @order)
     @route_update.current_location = params[:route_update][:current_location]
     if @route_update.save()
-      flash[:notice] = 'Rota atualizada com sucesso.'
+      if @route_update.current_location == @order.destination_address
+        @order.delivered!
+        @order.save()
+        flash[:notice] = 'Rota atualizada com sucesso. O produto foi entregue ao destinatário. Ordem de Serviço finalizada!'
+      else
+        @order.approved!
+        @order.save()
+        flash[:notice] = 'Rota atualizada com sucesso.'
+      end
       redirect_to shipping_company_order_route_updates_path
     else
       flash.now[:notice] = 'Não foi possível atualizar a rota.'
