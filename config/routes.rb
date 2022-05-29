@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :shipping_companies, only: [:index, :show, :new, :create, :edit, :update] do
+
     resources :vehicles, only: [:index, :new, :create, :edit, :update]
     resources :volume_prices, only: [:index, :new, :create]
     resources :weight_prices, only: [:index, :new, :create]
@@ -14,6 +15,8 @@ Rails.application.routes.draw do
     collection do
       get 'budget_form'
       get 'budget_search'
+      get 'tracking_form'
+      get 'tracking_search'
     end
     resources :orders, only: [:show, :update] do
       resources :route_updates, only: [:index, :new, :create]
@@ -22,7 +25,11 @@ Rails.application.routes.draw do
         patch 'approve'
       end
     end
+
   end
+
+
+
   resources :orders, only: [:index, :new, :create]
 
 end

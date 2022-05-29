@@ -1,0 +1,11 @@
+<h2>Consulta de Entrega</h2>
+
+<%= form_with(url: tracking_search_shipping_companies_path, method: :get) do |f| %>
+  <div>
+    <%= f.label :id_code, 'Código de Rastreamento' %>
+    <%= f.text_field :id_code %>
+  </div>
+  <div>
+    <%= f.submit 'Buscar' %>
+  </div>
+<% end %>

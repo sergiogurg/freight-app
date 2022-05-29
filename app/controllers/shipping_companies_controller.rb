@@ -1,8 +1,9 @@
 class ShippingCompaniesController < ApplicationController
-  before_action :authenticate_admin!, except: [:show, :sc_orders]
-  before_action :only_admin_or_user_allowed, only: [:show]
-  before_action :authenticate_user!, only: [:sc_orders]
+  before_action :authenticate_admin!, except: [:show, :sc_orders, :tracking_form, :tracking_search]
+  before_action :only_admin_or_user_allowed, only: [:show, :sc_orders]
   before_action :set_shipping_company, only: [:show, :edit, :update, :sc_orders]
+
+  
 
   def index
     @shipping_companies = ShippingCompany.all

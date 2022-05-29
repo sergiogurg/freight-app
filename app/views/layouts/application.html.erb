@@ -23,7 +23,7 @@
         <% if user_signed_in? && current_user.shipping_company != nil %>
           <%= link_to 'Minhas Ordens de Serviço', sc_orders_shipping_company_path(current_user.shipping_company_id) %> |
         <% end %>
-        Rastreamento de Entrega |
+        <%= link_to 'Rastreamento de Entrega',  tracking_form_shipping_companies_path %> |
         <% if admin_signed_in? %>
           <%= link_to 'Consulta de Preços', budget_form_shipping_companies_path %> |
           <%= current_admin.email %>
