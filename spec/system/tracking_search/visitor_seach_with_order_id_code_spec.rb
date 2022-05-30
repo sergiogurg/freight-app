@@ -41,6 +41,7 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
     expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
     expect(page).to have_content('Endereço de destino')
     expect(page).to have_content('Rua Padre Valdevino, 1880, Fortaleza - CE')
+
     expect(page).to have_content('Rotas')
     expect(page).to have_content('Data')
     expect(page).to have_content('28/05/2022')
@@ -48,6 +49,7 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
     expect(page).to have_content('10:41')
     expect(page).to have_content('Localização')
     expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
+
     expect(page).to have_content('Data')
     expect(page).to have_content('04/06/2022')
     expect(page).to have_content('Hora')
@@ -56,13 +58,16 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
     expect(page).to have_content('Rua dos Tupis, 317, Belo Horizonte - MG')
   end
 
-  # it 'mas não existe Ordem de Serviço correspondente' do
-  #   # Arrange
+  it 'mas não existe Ordem de Serviço correspondente' do
+    # Arrange
 
 
-  #   # Act
+    # Act
+    visit tracking_form_shipping_companies_path
+    fill_in 'Código de Rastreamento', with: 'VWJGX1FHUHENKC6'
+    click_on 'Buscar'
 
-
-  #   # Assert
-  # end
+    # Assert
+    expect(page).to have_content('Não existem entregas com esse código.')
+  end
 end
