@@ -1,4 +1,4 @@
-<h2>Resultado da Consulta: Ordem de Serviço <%= @order.id_code %></h2>
+<h2>Resultado da Consulta: Ordem de Serviço <%= @id_code %></h2>
 
 <% if @flag_empty %>
   <p>Não existem entregas com esse código.</p>
@@ -8,12 +8,15 @@
     <dd><%= @order.status %></dd>
     <dt><strong>Transportadora:</strong></dt>
     <dd><%= @order.shipping_company.corporate_name %></dd>
+    <% if !@flag_rejected %>
+      <dt><strong>Veículo:</strong></dt>
+      <dd><%= @order.vehicle.make %> <%= @order.vehicle.model %> <%= @order.vehicle.year %></dd>
+    <% end %>
     <dt><strong>Endereço de origem:</strong></dt>
     <dd><%= @order.origin_address %></dd>
     <dt><strong>Endereço de destino:</strong></dt>
     <dd><%= @order.destination_address %></dd>
   </dl>
-  <br>
   <h3>Rotas</h3>
   <% if @flag_rejected %>
     <p>Ordem rejeitada: não existem rotas.</p>

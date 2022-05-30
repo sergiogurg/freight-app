@@ -140,7 +140,8 @@ class ShippingCompaniesController < ApplicationController
   def tracking_search
     @flag_empty = false
     @flag_rejected = false
-    orders = Order.where(id_code: params[:id_code])
+    @id_code = params[:id_code]
+    orders = Order.where(id_code: @id_code)
     if orders.empty?
       @flag_empty = true
     else
