@@ -1,26 +1,15 @@
-# README
+# 🚚📦 Sistema de Entregas 🚚📦
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## <a name='tabela-de-conteudo'></a>Tabela de Conteúdo
 
-Things you may want to cover:
+* [Descrição](#descrição)
+* [Tabela de Conteúdo](#tabela-de-conteudo)
+* [Status do Projeto](#status-do-projeto)
+* [Features](#features)
+* [Pré-requisitos](#pre-requisitos)
+* [Como Rodar](#como-rodar)
+* [Tecnologias](#tecnologias)
+* [Ferramentas](#ferramentas)
+* [Autor](#autor)
 
-* Mapa mental MindMeister: https://mm.tt/map/2295145517?t=6LKuBaUWua
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Status do Projeto <a name='status-do-projeto'></a><h3 style='text-align: center;'> 🚧 Em construção... 🚧</h3>
