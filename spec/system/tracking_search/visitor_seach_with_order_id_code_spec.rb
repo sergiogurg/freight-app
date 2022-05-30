@@ -61,7 +61,6 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
   it 'mas não existe Ordem de Serviço correspondente' do
     # Arrange
 
-
     # Act
     visit tracking_form_shipping_companies_path
     fill_in 'Código de Rastreamento', with: 'VWJGX1FHUHENKC6'
