@@ -6,6 +6,8 @@
   <dl>
     <dt><strong>Status:</strong></dt>
     <dd><%= @order.status %></dd>
+    <dt><strong>Transportadora:</strong></dt>
+    <dd><%= @order.shipping_company.corporate_name %></dd>
     <dt><strong>Endereço de origem:</strong></dt>
     <dd><%= @order.origin_address %></dd>
     <dt><strong>Endereço de destino:</strong></dt>
@@ -17,7 +19,7 @@
     <p>Ordem rejeitada: não existem rotas.</p>
   <% else %>
     <hr>
-    <%= @order.route_updates.each do |ru| %>
+    <% @order.route_updates.each do |ru| %>
       <dl>
         <h4>Atualização <%= ru.id %></h4>
         <dt><strong>Data:</strong></dt>

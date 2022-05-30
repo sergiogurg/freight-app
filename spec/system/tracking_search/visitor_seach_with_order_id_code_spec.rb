@@ -21,7 +21,7 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
     # Arrange
     shipping_company = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
 
-    order = Order.create!(id_code: 'VWJGX1FHUHENKC6', origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', shipping_company: shipping_company)
+    order = Order.create!(id_code: 'VWJGX1FHUHENKC6', origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', shipping_company: shipping_company, status: 10)
 
     first_route_update = RouteUpdate.create!(date: '28/05/2022', time: '10:41', current_location: 'Avenida Alberto Byington, 1933, São Paulo - SP', order: order)
 
@@ -34,12 +34,25 @@ describe 'De posse do código de identificação id_code, um Visitante consulta 
 
     # Assert
     expect(page).to have_content('Status')
+    expect(page).to have_content('approved')
+    expect(page).to have_content('Transportadora')
+    expect(page).to have_content('Fedex Brasil Logistica e Transporte LTDA')
     expect(page).to have_content('Endereço de origem')
+    expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
     expect(page).to have_content('Endereço de destino')
+    expect(page).to have_content('Rua Padre Valdevino, 1880, Fortaleza - CE')
+    expect(page).to have_content('Rotas')
     expect(page).to have_content('Data')
+    expect(page).to have_content('28/05/2022')
     expect(page).to have_content('Hora')
+    expect(page).to have_content('10:41')
     expect(page).to have_content('Localização')
     expect(page).to have_content('Avenida Alberto Byington, 1933, São Paulo - SP')
+    expect(page).to have_content('Data')
+    expect(page).to have_content('04/06/2022')
+    expect(page).to have_content('Hora')
+    expect(page).to have_content('17:23')
+    expect(page).to have_content('Localização')
     expect(page).to have_content('Rua dos Tupis, 317, Belo Horizonte - MG')
   end
 
