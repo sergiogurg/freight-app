@@ -1,0 +1,33 @@
+<h2>Resultado da Consulta: Ordem de Serviço tchantchun</h2>
+
+<% if @flag_empty %>
+  <p>Não existem entregas com esse código.</p>
+<% else %>
+  <dl>
+    <dt><strong>Status:</strong></dt>
+    <dd><%= @order.status %></dd>
+    <dt><strong>Endereço de origem:</strong></dt>
+    <dd><%= @order.origin_address %></dd>
+    <dt><strong>Endereço de destino:</strong></dt>
+    <dd><%= @order.destination_address %></dd>
+  </dl>
+  <br>
+  <h3>Rotas</h3>
+  <% if @flag_rejected %>
+    <p>Ordem rejeitada: não existem rotas.</p>
+  <% else %>
+    <hr>
+    <%= @order.route_updates.each do |ru| %>
+      <dl>
+        <h4>Atualização <%= ru.id %></h4>
+        <dt><strong>Data:</strong></dt>
+        <dd><%= ru.date %></dd>
+        <dt><strong>Hora:</strong></dt>
+        <dd><%= ru.time %></dd>
+        <dt><strong>Localização:</strong></dt>
+        <dd><%= ru.current_location %></dd>
+      </dl>
+      <hr>
+    <% end %>
+  <% end %>
+<% end %>

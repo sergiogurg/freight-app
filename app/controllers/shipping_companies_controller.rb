@@ -3,8 +3,6 @@ class ShippingCompaniesController < ApplicationController
   before_action :only_admin_or_user_allowed, only: [:show, :sc_orders]
   before_action :set_shipping_company, only: [:show, :edit, :update, :sc_orders]
 
-  
-
   def index
     @shipping_companies = ShippingCompany.all
   end
@@ -136,6 +134,24 @@ class ShippingCompaniesController < ApplicationController
   def sc_orders
     @orders = Order.where(shipping_company: @shipping_company)
   end
+
+  def tracking_form; end
+
+  def tracking_search
+    @flag_empty = false
+    @flag_rejected = false
+    orders = Order.where(id_code: params[:id_code])
+    if orders.empty?
+      @flag_empty = true
+    else
+      @order = orders[0]
+      if @order.rejected?
+        @flag_rejected = true
+      end
+    end
+  end
+
+
 
   private
 
