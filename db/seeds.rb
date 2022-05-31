@@ -7,8 +7,22 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 
-# Arrange Transportadora 1
-first_sc = ShippingCompany.find(1)
+# Admin
+admin = Admin.create!(email: 'teste@sistemadefrete.com.br', password: 'admin123')
+
+# Transportadora 1
+first_sc = ShippingCompany.create!(corporate_name: 'Fedex Brasil Logistica e Transporte LTDA', brand_name: 'FedEx', registration_number: '10970887000285', email_domain: '@fedex.com.br', address: 'Rodovia Presidente Dutra, Km 228, Guarulhos - SP')
+
+first_sc_user = User.create!(email: 'teste@fedex.com.br', password: 'fedex123', shipping_company: first_sc)
+
+first_sc_first_vehicle = Vehicle.create!(id_plate: 'ABC-1234', make: 'Mercedez-Benz', model: 'Sprinter', year: '2022', load_capacity: 3500, shipping_company: first_sc)
+first_sc_second_vehicle = Vehicle.create!(id_plate: 'XYZ-5678', make: 'Fiat', model: 'Ducato', year: '2020', load_capacity: 1378, shipping_company: first_sc)
+
+first_sc_order = Order.create!(origin_address: 'Avenida Alberto Byington, 1933, São Paulo - SP', id_code: 'VWJGX1FHUHENKC6', product_length: 115, product_height: 91, product_width: 76, product_weight: 6.42, destination_address: 'Rua Padre Valdevino, 1880, Fortaleza - CE', status: 'approved', shipping_company: first_sc, vehicle: first_sc_first_vehicle)
+
+first_sc_order_first_route_update = RouteUpdate.create!(date: '28/05/2022', time: '10:41', current_location: 'Avenida Alberto Byington, 1933, São Paulo - SP', order: first_sc_order)
+
+first_sc_order_second_route_update = RouteUpdate.create!(date: '05/06/2022', time: '17:12', current_location: 'Rua Barão do Rio Branco, 922, Fortaleza - CE', order: first_sc_order)
 
 VolumePrice.create!(initial_volume: 0, final_volume: 0.250, price: 0.75, shipping_company: first_sc)
 VolumePrice.create!(initial_volume: 0.251, final_volume: 0.500, price: 1.40, shipping_company: first_sc)
@@ -26,7 +40,9 @@ DeliveryTime.create!(initial_distance: 300.1, final_distance: 500.0, weekdays: 8
 DeliveryTime.create!(initial_distance: 500.1, final_distance: 800.0, weekdays: 14, shipping_company: first_sc)
 
 # Arrange Transportadora 2
-second_sc = ShippingCompany.find(2)
+second_sc = ShippingCompany.create!(corporate_name: 'Embraen Empresa Brasileira de Transportes Eireli', brand_name: 'Embraen', registration_number: '04512172000103', email_domain: '@embraen.com.br', address: 'Rua Doutor João Marques Mauricio, 278, Embu das Artes - SP')
+
+second_sc_user = User.create!(email: 'teste@embraen.com.br', password: 'embraen123', shipping_company: second_sc)
 
 VolumePrice.create!(initial_volume: 0, final_volume: 0.650, price: 0.40, shipping_company: second_sc)
 VolumePrice.create!(initial_volume: 0.651, final_volume: 1.050, price: 0.90, shipping_company: second_sc)
@@ -45,7 +61,9 @@ DeliveryTime.create!(initial_distance: 600.1, final_distance: 800.0, weekdays: 1
 
 
 # Arrange Transportadora 3
-third_sc = ShippingCompany.find(3)
+third_sc = ShippingCompany.create!(corporate_name: 'Transportadora Route LTDA', brand_name: 'Route', registration_number: '12787399001072', email_domain: '@route.com.br', address: 'Rua Barão Do Rio Branco, 2027, Fortaleza - CE')
+
+third_sc_user = User.create!(email: 'teste@route.com.br', password: 'route123', shipping_company: third_sc)
 
 VolumePrice.create!(initial_volume: 0, final_volume: 0.500, price: 0.75, shipping_company: third_sc)
 VolumePrice.create!(initial_volume: 0.501, final_volume: 1.000, price: 1.25, shipping_company: third_sc)
@@ -63,7 +81,9 @@ DeliveryTime.create!(initial_distance: 500.1, final_distance: 750.0, weekdays: 1
 DeliveryTime.create!(initial_distance: 750.1, final_distance: 1000.0, weekdays: 19, shipping_company: third_sc)
 
 # Arrange Transportadora 4
-forth_sc = ShippingCompany.find(4)
+forth_sc = ShippingCompany.create!(corporate_name: 'Transportadora Tressi LTDA', brand_name: 'Tressi', registration_number: '00651266000102', email_domain: '@tressi.com.br', address: 'Avenida José João Muraro, 1514, Toledo - PR')
+
+forth_sc_user = User.create!(email: 'teste@tressi.com.br', password: 'tressi123', shipping_company: forth_sc)
 
 VolumePrice.create!(initial_volume: 0, final_volume: 0.800, price: 0.90, shipping_company: forth_sc)
 VolumePrice.create!(initial_volume: 0.801, final_volume: 1.600, price: 1.70, shipping_company: forth_sc)
