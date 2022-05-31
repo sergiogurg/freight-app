@@ -153,6 +153,9 @@ cd freight-app
 # Adicione gems e dependências:
 bin/setup
 
+# Preencha o banco de dados:
+rails db:seed
+
 # Execute o servidor:
 rails server
 ```
@@ -163,9 +166,13 @@ O servidor inciará na porta 3000 - acesse <http://localhost:3000>
 
 As seguintes tecnologias foram usadas na construção do projeto:
 
-- [Ruby](https://www.ruby-lang.org/pt/)
-- [Rails](https://rubyonrails.org/)
+- [Ruby 3.1.2](https://www.ruby-lang.org/pt/)
+- [Rails 7.0.3](https://rubyonrails.org/)
 - [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+
+As gems destinadas aos testes de sistema e testes unitários foram:
+- [rspec](https://rspec.info/)
+- [capybara](https://github.com/teamcapybara/capybara)
 
 ## <a name='ferramentas'></a>Ferramentas
 As seguintes ferramentas foram usadas na construção do projeto:
