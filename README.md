@@ -178,4 +178,4 @@ As gems destinadas aos testes de sistema e testes unitários foram:
 As seguintes ferramentas foram usadas na construção do projeto:
 - [MindMeister](https://www.mindmeister.com/) - Ferramenta online de mapas mentais
 
-O mapa mental desse projeto pode ser acessado por [aqui](https://www.mindmeister.com/).
+O mapa mental desse projeto pode ser acessado por [aqui](https://www.mindmeister.com/map/2295145517?t=6LKuBaUWua).
